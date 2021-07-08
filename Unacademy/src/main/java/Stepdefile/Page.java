@@ -11,6 +11,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 	public class Page
 	{
@@ -109,8 +110,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 	   //  driver.findElement(By.xpath("//div[@id='app']//a[@class='careers-jobs-list-styles__link--3qpm9']")).click();
 
         
-	    driver.findElement(By.xpath("//*[@id=\"__next\"]/footer/div/div[1]/div[1]/a/img")).click();
+      WebElement ele = driver.findElement(By.xpath("//*[@id=\'__next\']/div[1]/div[4]/div/div/div[1]"));
 
+      //Creating object of an Actions class
+      Actions action = new Actions(driver);
+
+      //Performing the mouse hover action on the target element.
+      action.moveToElement(ele).perform();
 
       
 	   // driver.quit();

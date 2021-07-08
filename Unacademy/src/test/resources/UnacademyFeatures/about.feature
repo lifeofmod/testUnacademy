@@ -1,9 +1,10 @@
 Feature: About us section
 
-  Background: 
-    Given User is on about us Unacademy page
+  #Background: 
+   # Given User is on about us Unacademy page
 
   Scenario: Should be able to see all four live numerical values
+    Given User is on about us Unacademy page
     When Seek the numeric value for all four categories
     Then Live Numeric value found for all four categories
   
