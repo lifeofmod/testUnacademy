@@ -6,7 +6,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Factory {
+public class PageFile {
 	public WebDriver driver;
 
 //I Understand that I should have reduced the xpaths manually sir, but trust me, I have been trying very hard & could'nt.
@@ -47,13 +47,13 @@ public class Factory {
 
 
 	
-	public Factory(WebDriver driver) {
+	public PageFile(WebDriver driver) {
 		super();
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	public void firstText()
-	{  //perfome the actions using web elements
+	{  //perform the actions using web elements
 	       ValueOne.getText();
 	}
 	public void secondText() {

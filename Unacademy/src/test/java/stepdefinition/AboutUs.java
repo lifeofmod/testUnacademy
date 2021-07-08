@@ -15,6 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pagefact.PageFile;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -30,6 +31,8 @@ public class AboutUs {
 	String text3;
 	String text4;
 	String expectedTitle;
+	PageFile PF;
+	
     
 	
 	@Given("User is on about us Unacademy page")
@@ -40,6 +43,7 @@ public class AboutUs {
 	  driver.get("https://unacademy.com/about");
 	  driver.manage().window().maximize();
 	   System.out.println("User is directed to Unacademy page");
+	   PF = new PageFile(driver);
 	}
 
 
