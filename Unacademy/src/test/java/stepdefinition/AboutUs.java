@@ -34,7 +34,7 @@ public class AboutUs {
 	PageFile PF;
 	//Comment
 	//Comment
-	
+	//Comment
 	@Given("User is on about us Unacademy page")
 	public void invokeBrowser() {
 		
@@ -49,7 +49,7 @@ public class AboutUs {
 
 	@When("Seek the numeric value for all four categories")
 	public void fetchAllValues() {
-	    text1 = driver.findElement(By.xpath("//*[@id=\"__next\"]/div[1]/div[1]/div/div[2]/div[1]/div/span[1]")).getText(); 
+	    text1 = PF.firstText();
 		//Assert.assertEquals(text1,"52M");
 	    text2 = driver.findElement(By.xpath("//*[@id=\"__next\"]/div[1]/div[1]/div/div[2]/div[2]/div/span[1]")).getText();
 		//Assert.assertEquals(text2,1000);
@@ -58,6 +58,7 @@ public class AboutUs {
 	    text4 = driver.findElement(By.xpath("//*[@id=\"__next\"]/div[1]/div[1]/div/div[2]/div[4]/div/span[1]")).getText();
 		//Assert.assertEquals(text4,2000);
 		System.out.println("Value fetched");
+		
 
 	}
 
@@ -72,12 +73,8 @@ public class AboutUs {
 	
 	@When("Click on button open position")
 	public void clickOpenPositions() {
-		WebElement ele = driver.findElement(By.xpath("//*[@id='__next']/div[1]/div[3]/div/button"));
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click();", ele); 
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        System.out.println("");
-
+		PF.openPosClick();
+	
 	}
 
 	
@@ -101,7 +98,8 @@ public class AboutUs {
 	@Then("Able to apply successfully")
 	public void fillRegDetails() throws InterruptedException, AWTException {
 		
-		driver.findElement(By.id("firstname")).sendKeys("testfirst"); //first name
+		PF.firstEnter("testfirst");
+		//driver.findElement(By.id("firstname")).sendKeys("testfirst"); //first name
 	    driver.findElement(By.id("lastname")).sendKeys("testlast"); //last name
 	    driver.findElement(By.id("email")).sendKeys("testtest@test.com"); // email
 	    driver.findElement(By.xpath("//*[@id='app']/div/div/div/main/form/section[1]/div[2]/div[4]/label/div/div/div/div/input")).sendKeys("6683565356");

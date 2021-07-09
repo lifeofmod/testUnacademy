@@ -1,5 +1,9 @@
 package pagefact;
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -52,9 +56,10 @@ public class PageFile {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	public void firstText()
+	public String firstText()
 	{  //perform the actions using web elements
-	       ValueOne.getText();
+	       String textone = ValueOne.getText();
+	       return textone;
 	}
 	public void secondText() {
 	       ValueOne.getText();
@@ -69,7 +74,11 @@ public class PageFile {
 
 	}
 	public void openPosClick() {
-		OpenPos.click();
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", OpenPos); 
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        System.out.println("");
+
 
 	}
 	public void buttonAfterThatClick() {
@@ -80,8 +89,9 @@ public class PageFile {
 		Apply.click();
 
 	}
-	public void firstEnter() {
-		Firstn.sendKeys();
+	public void firstEnter(String firstname) {
+		
+		Firstn.sendKeys(firstname);
 
 	}
 	public void lastEnter() {
