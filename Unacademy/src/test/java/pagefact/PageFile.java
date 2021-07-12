@@ -7,6 +7,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PageFile {
 	public WebDriver driver;
+	String expectedTitle;
 
 
 //I Will try again once all Frameworks are understood & implemented !
@@ -159,5 +161,15 @@ public class PageFile {
 	public void lnButton() {
 		LinkedIn.click();
 
+	}
+	public void instVerif() {
+		expectedTitle = "Unacademy (@unacademy) • Instagram photos and videos";
+		Assert.assertEquals(driver.getTitle(),expectedTitle);
+		System.out.println(driver.getTitle());
+	}
+	public void lnverify() {
+		expectedTitle = "Unacademy | LinkedIn";
+		System.out.println(driver.getTitle());
+		Assert.assertEquals(driver.getTitle(),expectedTitle);
 	}
 }

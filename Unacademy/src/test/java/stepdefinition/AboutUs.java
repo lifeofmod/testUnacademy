@@ -65,10 +65,7 @@ public class AboutUs {
 
 	@When("User clicks on button open position")
 	public void clickOpenPositions() throws InterruptedException {
-		//PF.openPosClick();
-		 WebElement ele = driver.findElement(By.xpath("//button[contains(text(),'See open postions')]"));
-	     JavascriptExecutor executor = (JavascriptExecutor)driver;
-	     executor.executeScript("arguments[0].click();", ele); 
+		PF.openPosClick();
 	}
 
 	@When("User clicks on any one of the options")
@@ -89,13 +86,13 @@ public class AboutUs {
 	
 	@When("User enters lastname as {string}")
 	public void fillLast(String lastname) {
-		PF.firstEnter(lastname);
+		PF.lastEnter(lastname);
 
 	}
 
 	@When("User enters email as {string}")
 	public void fillEmail(String mail) {
-		PF.firstEnter(mail);
+		PF.emailEnter(mail);
 	}
 
 	@When("User enters phone as {string}")
@@ -166,9 +163,7 @@ public class AboutUs {
 
 	@Then("Redirected to instagram page")
 	public void verifyInstPage() {
-		expectedTitle = "Unacademy (@unacademy) • Instagram photos and videos";
-		Assert.assertEquals(driver.getTitle(),expectedTitle);
-		System.out.println(driver.getTitle());
+		PF.instVerif();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.close();
 	}
@@ -180,9 +175,7 @@ public class AboutUs {
 
 	@Then("Redirected to LinkedIn page of Unacademy")
 	public void verifylnPage() {
-		expectedTitle = "Unacademy | LinkedIn";
-		System.out.println(driver.getTitle());
-		Assert.assertEquals(driver.getTitle(),expectedTitle);
+		PF.lnverify();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.quit();
 	}
