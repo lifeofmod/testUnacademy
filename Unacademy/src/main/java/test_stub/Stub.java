@@ -1,4 +1,4 @@
-package Stepdefile;
+package test_stub;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
-	public class Page
+	public class Stub
 	{
 		public static void moverOver(WebDriver driver) throws InterruptedException {
 			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,3200)");
@@ -54,7 +54,12 @@ import org.openqa.selenium.interactions.Actions;
         
         Thread.sleep(1600);
 
-	    
+        driver.findElement(By.xpath("//a[@href='/unacademy/j/614A9AD6C8/apply/")).click();
+        Thread.sleep(1600);
+
+        driver.findElement(By.xpath("//a[@href='/unacademy/j/614A9AD6C8/apply/")).click();
+        Thread.sleep(1600);
+
         driver.findElement(By.id("firstname")).sendKeys("testfirst"); //first name
 	    driver.findElement(By.id("lastname")).sendKeys("testlast"); //last name
 	    driver.findElement(By.id("email")).sendKeys("testtest@test.com"); // email
