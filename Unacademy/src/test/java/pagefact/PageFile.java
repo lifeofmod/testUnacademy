@@ -1,11 +1,17 @@
 package pagefact;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,7 +19,6 @@ import org.openqa.selenium.support.PageFactory;
 public class PageFile {
 	public WebDriver driver;
 
-//I Understand that I should have reduced the xpaths manually sir, but trust me, I have been trying very hard & could'nt.
 
 //I Will try again once all Frameworks are understood & implemented !
 	
@@ -21,34 +26,28 @@ public class PageFile {
 	
 	@CacheLookup
 	
-	@FindBy(xpath = "//*[@id=\\\"__next\\\"]/div[1]/div[1]/div/div[2]/div[1]/div/span[1]") WebElement ValueOne;
-	@FindBy(xpath = "//*[@id=\\\"__next\\\"]/div[1]/div[1]/div/div[2]/div[2]/div/span[1]") WebElement ValueTwo;
-	@FindBy(xpath = "//*[@id=\\\"__next\\\"]/div[1]/div[1]/div/div[2]/div[3]/div/span[1]") WebElement ValueThree;
-	@FindBy(xpath = "//*[@id=\\\"__next\\\"]/div[1]/div[1]/div/div[2]/div[4]/div/span[1]") WebElement ValueFour;
-	@FindBy(xpath = "//*[@id='__next']/div[1]/div[3]/div/button") WebElement OpenPos;
-	@FindBy(xpath = "//*[@id=\\'app\\']/div/div/main/div[2]/ul/li[1]/div/a") WebElement ButtonAfterThat;
-	@FindBy(xpath = "") WebElement Apply;
+	@FindBy(xpath = "//span[contains(text(),'50M')]") WebElement ValueOne;
+	@FindBy(xpath = "//span[contains(text(),'1000')]") WebElement ValueTwo;
+	@FindBy(xpath = "//span[contains(text(),'1B')]") WebElement ValueThree;
+	@FindBy(xpath = "//span[contains(text(),'2000')]") WebElement ValueFour;
+	@FindBy(xpath = "//button[contains(text(),'See open postions')]") WebElement OpenPos;
+	@FindBy(xpath = "//a[@href='/unacademy/j/614A9AD6C8/']") WebElement ButtonAfterThat;
+	@FindBy(xpath = "//a[@href='/unacademy/j/614A9AD6C8/apply/']") WebElement Apply;
 	@FindBy(id = "firstname") WebElement Firstn;
 	@FindBy(id = "lastname") WebElement Lastn;
 	@FindBy(id = "email") WebElement Email;
-	@FindBy(xpath = "//*[@id='app']/div/div/div/main/form/section[1]/div[2]/div[4]/label/div/div/div/div/input") WebElement Phone;
-	@FindBy(id = "CA_5516") WebElement City;
-	@FindBy(xpath = "//*[@id='app']/div/div/div/main/form/section[2]/div[2]/div[1]/div/div/label/div") WebElement DropDown;
-	@FindBy(xpath = "//*[@id='input_CA_5511_dialog']/div/div/ul/li[2]") WebElement DropDownOption;
-	@FindBy(xpath = "//*[@id=\\'app\\']/div/div/div/main/form/section[2]/div[2]/div[2]/label/div/div/input") WebElement RelExp;
+	@FindBy(xpath = "//input[@name='phone']") WebElement phone;
+	@FindBy(id = "CA_5516") WebElement City; ////input[@id='CA_5516']
+	@FindBy(xpath = "//input[@role='combobox']") WebElement DropDown;
+	@FindBy(xpath = "//span[text()='0-1']") WebElement DropDownOption;
 	@FindBy(xpath = "//span[@role='button']") WebElement UploadFile;
-	@FindBy(xpath = "//*[@id=\\'app\\']/div/div/div/main/form/section[3]/div[2]/div[1]/label/div/div/input") WebElement Exp;
-	@FindBy(xpath = "//*[@id=\\'app\\']/div/div/div/main/form/section[3]/div[2]/div[2]/div/div") WebElement DropDownTwo;
-	@FindBy(xpath = "//*[@id=\\'input_CA_5515_dialog\\']/div/div/ul/li[2]") WebElement DropDownOptionTwo;
-	@FindBy(xpath = "//*[@id='app']/div/div/div/main/form/button") WebElement Register;
-	@FindBy(id = "") WebElement HoverOne;
-	@FindBy(id = "") WebElement HoverTwo;
-	@FindBy(id = "") WebElement HoverThree;
-	@FindBy(id = "") WebElement Home;
-	@FindBy(id = "") WebElement Facebook;
-	@FindBy(id = "") WebElement YouTube;
-	@FindBy(id = "") WebElement Twitter;
-
+	@FindBy(xpath = "//input[@name='CA_5513']") WebElement Sal;
+	@FindBy(xpath = "//button[text() ='Submit application']") WebElement Register;
+	@FindBy(xpath = "//div[contains(@class,'LeaderBlock__Face')]//child::div[1]") WebElement HoverOne;
+	@FindBy(xpath = "//div[contains(@class,'LeaderBlock__Face')]//child::div[2]") WebElement HoverTwo;
+	@FindBy(xpath = "//div[contains(@class,'LeaderBlock__Face')]//child::div[3]") WebElement HoverThree;
+	@FindBy(xpath = "//a[@href='https://www.instagram.com/unacademy/']") WebElement Instagram;
+	@FindBy(xpath = "//a[@href='https://www.linkedin.com/company/unacademy']") WebElement LinkedIn;
 
 	
 	public PageFile(WebDriver driver) {
@@ -58,56 +57,64 @@ public class PageFile {
 	}
 	public String firstText()
 	{  //perform the actions using web elements
-	       String textone = ValueOne.getText();
-	       return textone;
+	       String text1 = ValueOne.getText();
+	       return text1;
+		
 	}
-	public void secondText() {
-	       ValueOne.getText();
+	public String secondText() 
+	{
+		   String text2 = ValueTwo.getText();
+	       return text2;
+	}
+	public String thirdText() 
+	{
+	       String text3 = ValueThree.getText();
+	       return text3;
 
 	}
-	public void thirdText() {
-	       ValueOne.getText();
+	public String fourthText() 
+	{
+	       String text4 = ValueFour.getText();
+	       return text4;
 
 	}
-	public void fourthText() {
-	       ValueOne.getText();
-
-	}
-	public void openPosClick() {
+	public void openPosClick() 
+	{
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", OpenPos); 
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        System.out.println("");
-
-
-	}
-	public void buttonAfterThatClick() {
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        System.out.println("  ");
+   	}
+	
+	public void buttonAfterThatClick() 
+	{
 		ButtonAfterThat.click();
-
 	}
-	public void applyClick() {
-		Apply.click();
-
+	
+	public void applyClick() 
+	{
+        Apply.click();
 	}
+	
 	public void firstEnter(String firstname) {
 		
 		Firstn.sendKeys(firstname);
 
 	}
-	public void lastEnter() {
-		Lastn.sendKeys();
+	public void lastEnter(String lastname) {
+		Lastn.sendKeys(lastname);
 
 	}
-	public void emailEnter() {
-		Email.sendKeys();
+	public void emailEnter(String mail) {
+		Email.sendKeys(mail);
 
 	}
-	public void phoneEnter() {
-		Phone.sendKeys();
+	public void enterPhoneNo(String phnno) {
+		phone.sendKeys(phnno);
 
 	}
-	public void cityEnter() {
-		City.sendKeys();
+	public void cityEnter(String city) {
+		City.sendKeys(city);
 
 	}
 	public void dropDownOpen() {
@@ -118,56 +125,39 @@ public class PageFile {
 		DropDownOption.click();
 
 	}
-	public void relaExpEnter() {
-		RelExp.sendKeys();
-
-	}
-	public void uplaodFileFromBrowser() {
+	public void uploadFileBrowser() {
 		UploadFile.click();
-
 	}
-	public void expEnter() {
-		Exp.click();
-
-	}
-	public void dropDownTwoOpen() {
-		DropDownTwo.click();
-
-	}
-	public void dropDownTwoSelect() {
-		DropDownOptionTwo.click();
+	public void salaryEnter(String recentsalary) {
+		Sal.sendKeys(recentsalary);
 
 	}
 	public void regButtonClick() {
 		Register.click();
 
 	}
-	public void firstFounderText() {
-		HoverOne.click();
+	public void firstFounderText() {      
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement Element1 = HoverTwo;
+	    js.executeScript("arguments[0].scrollIntoView();", Element1);
+	    Actions act = new Actions(driver);
+	    act.moveToElement(HoverOne).build().perform();
 
 	}
 	public void secondFounderText() {
-		HoverTwo.click();
-
+	    Actions act = new Actions(driver);
+	    act.moveToElement(HoverTwo).build().perform();
 	}
 	public void thirdFounderText() {
-		HoverThree.click();
+		Actions act = new Actions(driver);
+	    act.moveToElement(HoverThree).build().perform();
+	}
+	public void instButton() {
+		Instagram.click();
 
 	}
-	public void homeButton() {
-		Home.click();
-
-	}
-	public void fbButton() {
-		Facebook.click();
-
-	}
-	public void ytButton() {
-		YouTube.click();
-
-	}
-	public void tlButton() {
-		Twitter.click();
+	public void lnButton() {
+		LinkedIn.click();
 
 	}
 }

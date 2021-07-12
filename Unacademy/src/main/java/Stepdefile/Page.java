@@ -5,7 +5,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-
+import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +15,14 @@ import org.openqa.selenium.interactions.Actions;
 
 	public class Page
 	{
+		public static void moverOver(WebDriver driver) throws InterruptedException {
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,3200)");
+		    Actions act = new Actions(driver);
+		    Thread.sleep(3000);
+		    act.moveToElement(driver.findElement(By.xpath("//div[contains(@class,'LeaderBlock__Face')]//child::div[1]"))).build().perform();
+			
+		}
+		
 	    public static void main( String[] args ) throws InterruptedException, AWTException
 	    { 
 	        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/src/main/java/drivers/chromedriver.exe");
@@ -36,26 +44,25 @@ import org.openqa.selenium.interactions.Actions;
 	    System.out.println("Test 4 Passes - Fetched live Value of active learners -> " +text5);
 	    
 	 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-	    WebElement Element = driver.findElement(By.linkText(""));
-        js.executeScript("arguments[0].scrollIntoView();", Element);  // yaha tak wala scroll karta hai
-        driver.get("https://apply.workable.com/unacademy/");
-        Thread.sleep(2500);
-	    driver.findElement(By.xpath("//*[@id='app']/div/div/main/div[2]/ul/li[1]/div")).click();
-        Thread.sleep(1000);
-	    driver.get("https://apply.workable.com/unacademy/j/2CD4FCB2CB/apply/");
-	    
+      //  JavascriptExecutor js = (JavascriptExecutor) driver;
+	//    WebElement Element = driver.findElement(By.linkText(""));
+    //    js.executeScript("arguments[0].scrollIntoView();", Element);  // yaha tak wala scroll karta hai
+      
+	    WebElement ele = driver.findElement(By.xpath("//button[contains(text(),'See open postions')]"));
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", ele); 
+        
         Thread.sleep(1600);
 
 	    
         driver.findElement(By.id("firstname")).sendKeys("testfirst"); //first name
 	    driver.findElement(By.id("lastname")).sendKeys("testlast"); //last name
 	    driver.findElement(By.id("email")).sendKeys("testtest@test.com"); // email
-	    driver.findElement(By.xpath("//*[@id='app']/div/div/div/main/form/section[1]/div[2]/div[4]/label/div/div/div/div/input")).sendKeys("6683565356");
+	    driver.findElement(By.xpath("//input[@name='phone']")).sendKeys("6683565356");
 	    driver.findElement(By.id("CA_5516")).sendKeys("testcity"); // city
 	        
-	    driver.findElement(By.xpath("//*[@id='app']/div/div/div/main/form/section[2]/div[2]/div[1]/div/div/label/div")).click();
-        driver.findElement(By.xpath("//*[@id='input_CA_5511_dialog']/div/div/ul/li[2]")).click();
+	    driver.findElement(By.xpath("//input[@role='combobox']")).click();
+        driver.findElement(By.xpath("//span[text()='0-1']")).click();
 	    
 	    driver.findElement(By.xpath("//*[@id=\'app\']/div/div/div/main/form/section[2]/div[2]/div[2]/label/div/div/input")).sendKeys("25"); //years of rel experience
    
@@ -75,28 +82,75 @@ import org.openqa.selenium.interactions.Actions;
         rb.keyRelease(KeyEvent.VK_ENTER);
         
         
-	    driver.findElement(By.xpath("//*[@id=\'app\']/div/div/div/main/form/section[3]/div[2]/div[1]/label/div/div/input")).sendKeys("25"); //
+	    driver.findElement(By.xpath("//input[@name='CA_5513']")).sendKeys("25"); //
 	    
 	    driver.findElement(By.xpath("//*[@id=\'app\']/div/div/div/main/form/section[3]/div[2]/div[2]/div/div")).click();
         driver.findElement(By.xpath("//*[@id=\'input_CA_5515_dialog\']/div/div/ul/li[2]")).click();
 	    
         Thread.sleep(5000);
         
-	    driver.findElement(By.xpath("//*[@id='app']/div/div/div/main/form/button")).click();
-	   /* WebElement ele = driver.findElement(By.xpath("//*[@id=\'app\']/div/div/div/main/form/button"));
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click();", ele); */
+	    driver.findElement(By.xpath("//button[text() ='Submit application']")).click();
+	    
+        Thread.sleep(3000);
+
+		driver.navigate().to("https://www.unacademy.com/about");
+		Thread.sleep(2500);
+		// WebElement Element1 = driver.findElement(By.xpath("//div[contains(@class,'LeaderBlock__Face')]//child::div[2]"));
+	    // js.executeScript("arguments[0].scrollIntoView();", Element1);
+		//creating actions class
+        Actions act = new Actions(driver);
+        //hover to tech
+    	  moverOver(driver);
+
+        //act.moveToElement(driver.findElement(By.xpath("//div[contains(@class,'LeaderBlock__Face')]//child::div[1]"))).build().perform();
+     
+		Thread.sleep(1500);
+		 //Actions act2 = new Actions(driver);
+	     //hover to tech
+	     act.moveToElement(driver.findElement(By.xpath("//div[contains(@class,'LeaderBlock__Face')]//child::div[2]"))).build().perform();
+			
+	    Thread.sleep(1500);
+	   // Actions act3 = new Actions(driver);
+        //hover to tech
+        act.moveToElement(driver.findElement(By.xpath("//div[contains(@class,'LeaderBlock__Face')]//child::div[3]"))).build().perform();
+		
+		
+		
+		
+		Thread.sleep(1000);
+		
+	
+		
+		driver.navigate().to("https://www.instagram.com/unacademy/");
+		String unexpectedTitle;
+		unexpectedTitle = "Unacademy (@unacademy) • Instagram photos and videos";
+		Assert.assertEquals(driver.getTitle(),unexpectedTitle);
+		System.out.println(driver.getTitle());
+		
+		driver.navigate().to("https://www.youtube.com/channel/UCABe2FgVNv2hgBeMu2mySVg");
+		String inexpectedTitle;
+		inexpectedTitle = "Let's Crack UPSC CSE - YouTube";
+		Assert.assertEquals(driver.getTitle(),inexpectedTitle);
+		System.out.println(driver.getTitle());
+		
+		
+		driver.quit();
+		
+		
+	    //WebElement ele = driver.findElement(By.xpath("//*[@id=\'app\']/div/div/div/main/form/button"));
+        //JavascriptExecutor executor = (JavascriptExecutor)driver;
+        //executor.executeScript("arguments[0].click();", ele); 
         
 	    
 	  /*  Select drpCountry = new Select(driver.findElement(By.name("country")));
 		drpCountry.selectByVisibleText("ANTARCTICA"); drop down wala */
 		
 	   
-        Thread.sleep(5000);
+        /*Thread.sleep(5000);
         driver.get("https://unacademy.com/about");
         JavascriptExecutor js1 = (JavascriptExecutor) driver;
 	    WebElement Element1 = driver.findElement(By.linkText(""));
-        js1.executeScript("arguments[0].scrollIntoView();", Element1); 
+        js1.executeScript("arguments[0].scrollIntoView();", Element1); */
         
        /* WebElement ele = driver.findElement(By.xpath("//*[@id='__next']/div[1]/div[3]/div/button"));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -110,13 +164,13 @@ import org.openqa.selenium.interactions.Actions;
 	   //  driver.findElement(By.xpath("//div[@id='app']//a[@class='careers-jobs-list-styles__link--3qpm9']")).click();
 
         
-      WebElement ele = driver.findElement(By.xpath("//*[@id=\'__next\']/div[1]/div[4]/div/div/div[1]"));
+  /*    WebElement ele = driver.findElement(By.xpath("//*[@id=\'__next\']/div[1]/div[4]/div/div/div[1]"));
 
       //Creating object of an Actions class
       Actions action = new Actions(driver);
 
       //Performing the mouse hover action on the target element.
-      action.moveToElement(ele).perform();
+      action.moveToElement(ele).perform();*/
 
       
 	   // driver.quit();
