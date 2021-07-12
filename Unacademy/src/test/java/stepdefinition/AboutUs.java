@@ -65,7 +65,6 @@ public class AboutUs {
 
 	@When("User clicks on button open position")
 	public void clickOpenPositions() throws InterruptedException {
-		Thread.sleep(5000);
 		//PF.openPosClick();
 		 WebElement ele = driver.findElement(By.xpath("//button[contains(text(),'See open postions')]"));
 	     JavascriptExecutor executor = (JavascriptExecutor)driver;

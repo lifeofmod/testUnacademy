@@ -5,6 +5,8 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
 import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -53,11 +55,14 @@ import org.openqa.selenium.interactions.Actions;
         executor.executeScript("arguments[0].click();", ele); 
         
         Thread.sleep(1600);
+        
+        ArrayList<String> windowHandles = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(windowHandles.get(1));
 
-        driver.findElement(By.xpath("//a[@href='/unacademy/j/614A9AD6C8/apply/")).click();
+        driver.findElement(By.xpath("//a[@href='/unacademy/j/614A9AD6C8/']")).click();
         Thread.sleep(1600);
 
-        driver.findElement(By.xpath("//a[@href='/unacademy/j/614A9AD6C8/apply/")).click();
+        driver.findElement(By.xpath("//a[@href='/unacademy/j/614A9AD6C8/apply/']")).click();
         Thread.sleep(1600);
 
         driver.findElement(By.id("firstname")).sendKeys("testfirst"); //first name
@@ -68,9 +73,7 @@ import org.openqa.selenium.interactions.Actions;
 	        
 	    driver.findElement(By.xpath("//input[@role='combobox']")).click();
         driver.findElement(By.xpath("//span[text()='0-1']")).click();
-	    
-	    driver.findElement(By.xpath("//*[@id=\'app\']/div/div/div/main/form/section[2]/div[2]/div[2]/label/div/div/input")).sendKeys("25"); //years of rel experience
-   
+        
 	    driver.findElement(By.xpath("//span[@role='button']")).click();
 	    Thread.sleep(2000);
         Robot rb = new Robot();
@@ -87,16 +90,11 @@ import org.openqa.selenium.interactions.Actions;
         rb.keyRelease(KeyEvent.VK_ENTER);
         
         
-	    driver.findElement(By.xpath("//input[@name='CA_5513']")).sendKeys("25"); //
-	    
-	    driver.findElement(By.xpath("//*[@id=\'app\']/div/div/div/main/form/section[3]/div[2]/div[2]/div/div")).click();
-        driver.findElement(By.xpath("//*[@id=\'input_CA_5515_dialog\']/div/div/ul/li[2]")).click();
-	    
-        Thread.sleep(5000);
-        
+	    driver.findElement(By.xpath("//input[@name='CA_5513']")).sendKeys("31.42"); //salary
+	        
 	    driver.findElement(By.xpath("//button[text() ='Submit application']")).click();
 	    
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
 		driver.navigate().to("https://www.unacademy.com/about");
 		Thread.sleep(2500);
