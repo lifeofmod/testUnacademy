@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import org.testng.Assert;
 import org.openqa.selenium.By;
@@ -33,16 +34,16 @@ import org.openqa.selenium.interactions.Actions;
 	        driver.manage().window().maximize();
 
 
-	    String text2 = driver.findElement(By.xpath("//*[@id=\"__next\"]/div[1]/div[1]/div/div[2]/div[1]/div/span[1]")).getText();  
+	    String text2 = driver.findElement(By.xpath("//span[contains(text(),'50M')]")).getText();  
         System.out.println("Test 1 Passes - Fetched live Value of active learners -> " +text2);
 
-	    String text3 = driver.findElement(By.xpath("//*[@id=\"__next\"]/div[1]/div[1]/div/div[2]/div[2]/div/span[1]")).getText();
+	    String text3 = driver.findElement(By.xpath("//span[contains(text(),'1000')]")).getText();
 	    System.out.println("Test 2 Passes - Fetched live Value of active learners -> " +text3);
 
-	    String text4 = driver.findElement(By.xpath("//*[@id=\"__next\"]/div[1]/div[1]/div/div[2]/div[3]/div/span[1]")).getText();
+	    String text4 = driver.findElement(By.xpath("//span[contains(text(),'1B')")).getText();
 	    System.out.println("Test 3 Passes - Fetched live Value of active learners -> " +text4);
 	    
-	    String text5 = driver.findElement(By.xpath("//*[@id=\"__next\"]/div[1]/div[1]/div/div[2]/div[4]/div/span[1]")).getText();
+	    String text5 = driver.findElement(By.xpath("//span[contains(text(),'2000')")).getText();
 	    System.out.println("Test 4 Passes - Fetched live Value of active learners -> " +text5);
 	    
 	 
@@ -54,7 +55,7 @@ import org.openqa.selenium.interactions.Actions;
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", ele); 
         
-        Thread.sleep(1600);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         
         ArrayList<String> windowHandles = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(windowHandles.get(1));
@@ -98,9 +99,8 @@ import org.openqa.selenium.interactions.Actions;
 
 		driver.navigate().to("https://www.unacademy.com/about");
 		Thread.sleep(2500);
-		// WebElement Element1 = driver.findElement(By.xpath("//div[contains(@class,'LeaderBlock__Face')]//child::div[2]"));
-	    // js.executeScript("arguments[0].scrollIntoView();", Element1);
-		//creating actions class
+		
+	
         Actions act = new Actions(driver);
         //hover to tech
     	  moverOver(driver);
@@ -122,9 +122,9 @@ import org.openqa.selenium.interactions.Actions;
 		
 		Thread.sleep(1000);
 		
-	
+		driver.navigate().to("https://www.unacademy.com/about");
+
 		
-		driver.navigate().to("https://www.instagram.com/unacademy/");
 		String unexpectedTitle;
 		unexpectedTitle = "Unacademy (@unacademy) • Instagram photos and videos";
 		Assert.assertEquals(driver.getTitle(),unexpectedTitle);

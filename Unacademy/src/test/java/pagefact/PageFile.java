@@ -22,9 +22,6 @@ public class PageFile {
 	String expectedTitle;
 
 
-//I Will try again once all Frameworks are understood & implemented !
-	
-//I took care of nomenclature !
 	
 	@CacheLookup
 	
@@ -85,7 +82,6 @@ public class PageFile {
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", OpenPos); 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        System.out.println("  ");
    	}
 	
 	public void buttonAfterThatClick() 

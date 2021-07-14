@@ -5,6 +5,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -17,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import library.Utility;
 import pagefact.PageFile;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -28,6 +30,7 @@ import org.openqa.selenium.support.ui.Select;
 public class AboutUs {
 	
 	public static WebDriver driver;
+	public Utility util = new Utility();
 	String text1;
 	String text2;
 	String text3;
@@ -37,10 +40,10 @@ public class AboutUs {
 
 	
 	@Given("User is on about us Unacademy page")
-	public void invokeBrowser() {
-		 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/src/test/java/drivers/chromedriver.exe");
+	public void invokeBrowser() throws IOException {
+		 System.setProperty(util.getWebDriver(),util.getExecutor());
 		 driver= new ChromeDriver();
-		 driver.get("https://unacademy.com/about");
+		 driver.get(util.getBaseUrl());
 		 driver.manage().window().maximize();
 		 System.out.println("User is directed to Unacademy page");
 		 PF = new PageFile(driver);
