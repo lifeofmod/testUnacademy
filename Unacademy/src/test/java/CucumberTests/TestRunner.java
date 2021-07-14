@@ -6,7 +6,7 @@ import io.cucumber.junit.CucumberOptions;
 //feature file mapping and execution
 @RunWith(Cucumber.class)
 @CucumberOptions(
-       features = "D:\\Wrkspcc\\Unacademy\\src\\test\\resources\\UnacademyFeatures\\about.feature",
+       features = "D:\\Wrkspcc\\testUnacademy\\Unacademy\\src\\test\\resources\\Feature\\about.feature",
        glue = {"stepdefinition"},
        dryRun = false,
        monochrome = true)

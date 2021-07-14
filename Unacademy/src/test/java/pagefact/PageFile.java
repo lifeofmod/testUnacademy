@@ -29,7 +29,7 @@ public class PageFile {
 	@FindBy(xpath = "//span[contains(text(),'1000')]") WebElement ValueTwo;
 	@FindBy(xpath = "//span[contains(text(),'1B')]") WebElement ValueThree;
 	@FindBy(xpath = "//span[contains(text(),'2000')]") WebElement ValueFour;
-	@FindBy(xpath = "//button[contains(text(),'See open postions')]") WebElement OpenPos;
+	@FindBy(xpath = "//*[@id=\\'__next\\']/div[1]/div[3]/div/button") WebElement OpenPos;
 	@FindBy(xpath = "//a[@href='/unacademy/j/614A9AD6C8/']") WebElement ButtonAfterThat;
 	@FindBy(xpath = "//a[@href='/unacademy/j/614A9AD6C8/apply/']") WebElement Apply;
 	@FindBy(id = "firstname") WebElement Firstn;

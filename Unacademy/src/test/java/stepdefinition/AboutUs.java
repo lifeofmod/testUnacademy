@@ -98,7 +98,7 @@ public class AboutUs {
 		PF.emailEnter(mail);
 	}
 
-	@When("User enters phone as {string}")
+	@When("User enters phone number as {string}")
 	public void fillPhone(String phnno) {
 		PF.enterPhoneNo(phnno);
 	}

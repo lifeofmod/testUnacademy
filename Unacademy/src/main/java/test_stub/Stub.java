@@ -40,10 +40,10 @@ import org.openqa.selenium.interactions.Actions;
 	    String text3 = driver.findElement(By.xpath("//span[contains(text(),'1000')]")).getText();
 	    System.out.println("Test 2 Passes - Fetched live Value of active learners -> " +text3);
 
-	    String text4 = driver.findElement(By.xpath("//span[contains(text(),'1B')")).getText();
+	    String text4 = driver.findElement(By.xpath("//span[contains(text(),'1B')]")).getText();
 	    System.out.println("Test 3 Passes - Fetched live Value of active learners -> " +text4);
 	    
-	    String text5 = driver.findElement(By.xpath("//span[contains(text(),'2000')")).getText();
+	    String text5 = driver.findElement(By.xpath("//span[contains(text(),'2000')]")).getText();
 	    System.out.println("Test 4 Passes - Fetched live Value of active learners -> " +text5);
 	    
 	 
@@ -51,7 +51,7 @@ import org.openqa.selenium.interactions.Actions;
 	//    WebElement Element = driver.findElement(By.linkText(""));
     //    js.executeScript("arguments[0].scrollIntoView();", Element);  // yaha tak wala scroll karta hai
       
-	    WebElement ele = driver.findElement(By.xpath("//button[contains(text(),'See open postions')]"));
+	    WebElement ele = driver.findElement(By.xpath("//*[@id=\'__next\']/div[1]/div[3]/div/button"));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", ele); 
         
@@ -137,7 +137,7 @@ import org.openqa.selenium.interactions.Actions;
 		System.out.println(driver.getTitle());
 		
 		
-		driver.quit();
+		//driver.quit();
 		
 		
 	    //WebElement ele = driver.findElement(By.xpath("//*[@id=\'app\']/div/div/div/main/form/button"));
